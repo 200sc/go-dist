@@ -1,3 +1,5 @@
+// Package floatrange holds distributions that accept and return float64s
+
 package floatrange
 
 // Range represents a range of floating point numbers
