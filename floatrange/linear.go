@@ -50,8 +50,5 @@ func (lfr LinearFloatRange) EnforceRange(f float64) float64 {
 	if f <= lfr.Min {
 		return lfr.Min
 	}
-	if f >= lfr.Max {
-		return lfr.Max
-	}
-	return f
+	return lfr.Max
 }
