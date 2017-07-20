@@ -42,3 +42,16 @@ func (lir linear) Mult(i int) Range {
 	lir.Min *= i
 	return lir
 }
+
+func (lir linear) InRange(i int) bool {
+	return (i > lir.Min) == (i < lir.Max)
+}
+
+func (lir linear) EnforceRange(i int) int {
+	if i < lir.Min {
+		return lir.Min
+	} else if i > lir.Max {
+		return lir.Max
+	}
+	return i
+}

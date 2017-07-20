@@ -9,4 +9,6 @@ package intrange
 type Range interface {
 	Poll() int
 	Mult(int) Range
+	InRange(int) bool
+	EnforceRange(int) int
 }

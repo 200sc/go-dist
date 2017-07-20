@@ -20,3 +20,13 @@ func (inf Infinite) Poll() int {
 func (inf Infinite) Mult(i int) Range {
 	return inf
 }
+
+// EnforceRange for an Infinite returns Infinite
+func (inf Infinite) EnforceRange(i int) int {
+	return math.MaxInt32
+}
+
+// InRange returns true if i is math.MaxInt32
+func (inf Infinite) InRange(i int) bool {
+	return i == math.MaxInt32
+}

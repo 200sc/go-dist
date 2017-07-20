@@ -18,3 +18,13 @@ func (c Constant) Poll() int {
 func (c Constant) Mult(i int) Range {
 	return Constant(int(c) * i)
 }
+
+// EnforceRange on a constant must return the constant
+func (c Constant) EnforceRange(i int) int {
+	return int(c)
+}
+
+// InRange is only valid for a constant if c == i
+func (c Constant) InRange(i int) bool {
+	return int(c) == i
+}
