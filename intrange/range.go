@@ -1,5 +1,4 @@
 // Package intrange holds distributions that accept and return ints
-
 package intrange
 
 // Range represents the ability

@@ -1,5 +1,4 @@
-// Package colorrange holds distributions that accept and return float64s
-
+// Package colorrange holds distributions that accept and return color.Colors
 package colorrange
 
 import (

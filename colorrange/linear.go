@@ -6,7 +6,7 @@ import (
 	"github.com/200sc/go-dist/intrange"
 )
 
-// Linear color ranges return colors on a linear distribution
+// Linear64 color ranges return colors on a linear distribution
 type Linear64 struct {
 	r, g, b, a intrange.Range
 }
