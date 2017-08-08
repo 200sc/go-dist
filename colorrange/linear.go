@@ -1,7 +1,6 @@
 package colorrange
 
 import (
-	"fmt"
 	"image/color"
 
 	"github.com/200sc/go-dist/intrange"
@@ -105,7 +104,6 @@ func (l Linear) Poll() color.Color {
 	g3 := l.g.Poll()
 	b3 := l.b.Poll()
 	a3 := l.a.Poll()
-	fmt.Println(r3, g3, b3, a3)
 	return rgbaFromInts(r3, g3, b3, a3)
 }
 
