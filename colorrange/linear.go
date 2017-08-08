@@ -1,6 +1,7 @@
 package colorrange
 
 import (
+	"fmt"
 	"image/color"
 
 	"github.com/200sc/go-dist/intrange"
@@ -52,6 +53,15 @@ func (l Linear64) Poll() color.Color {
 	return color.RGBA64{uint16(r3), uint16(g3), uint16(b3), uint16(a3)}
 }
 
+// Percentile returns a color f percent along the color range
+func (l Linear64) Percentile(f float64) color.Color {
+	r3 := l.r.Percentile(f)
+	g3 := l.g.Percentile(f)
+	b3 := l.b.Percentile(f)
+	a3 := l.a.Percentile(f)
+	return color.RGBA64{uint16(r3), uint16(g3), uint16(b3), uint16(a3)}
+}
+
 // Linear color ranges return colors on a linear distribution
 type Linear struct {
 	r, g, b, a intrange.Range
@@ -77,7 +87,7 @@ func (l Linear) EnforceRange(c color.Color) color.Color {
 	g4 := l.g.EnforceRange(int(g3))
 	b4 := l.b.EnforceRange(int(b3))
 	a4 := l.a.EnforceRange(int(a3))
-	return color.RGBA{uint8(r4 / 255), uint8(g4 / 255), uint8(b4 / 255), uint8(a4 / 255)}
+	return rgbaFromInts(r4, g4, b4, a4)
 }
 
 // InRange returns whether the input color falls in this range
@@ -95,5 +105,19 @@ func (l Linear) Poll() color.Color {
 	g3 := l.g.Poll()
 	b3 := l.b.Poll()
 	a3 := l.a.Poll()
-	return color.RGBA{uint8(r3 / 255), uint8(g3 / 255), uint8(b3 / 255), uint8(a3 / 255)}
+	fmt.Println(r3, g3, b3, a3)
+	return rgbaFromInts(r3, g3, b3, a3)
+}
+
+// Percentile returns a color f percent along the color range
+func (l Linear) Percentile(f float64) color.Color {
+	r3 := l.r.Percentile(f)
+	g3 := l.g.Percentile(f)
+	b3 := l.b.Percentile(f)
+	a3 := l.a.Percentile(f)
+	return rgbaFromInts(r3, g3, b3, a3)
+}
+
+func rgbaFromInts(r, g, b, a int) color.RGBA {
+	return color.RGBA{uint8(r / 257), uint8(g / 257), uint8(b / 257), uint8(a / 257)}
 }

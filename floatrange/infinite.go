@@ -29,3 +29,8 @@ func (i Infinite) InRange(f float64) bool {
 func (i Infinite) EnforceRange(f float64) float64 {
 	return math.MaxFloat64
 }
+
+// Percentile returns the float behind the constant
+func (i Infinite) Percentile(float64) float64 {
+	return math.MaxFloat64
+}
