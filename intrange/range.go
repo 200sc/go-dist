@@ -10,4 +10,5 @@ type Range interface {
 	Mult(int) Range
 	InRange(int) bool
 	EnforceRange(int) int
+	Percentile(float64) int
 }

@@ -30,3 +30,8 @@ func (inf Infinite) EnforceRange(i int) int {
 func (inf Infinite) InRange(i int) bool {
 	return i == math.MaxInt32
 }
+
+// Percentile can only return math.MaxInt32
+func (inf Infinite) Percentile(float64) int {
+	return math.MaxInt32
+}

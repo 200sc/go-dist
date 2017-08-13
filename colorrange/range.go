@@ -10,4 +10,5 @@ type Range interface {
 	Poll() color.Color
 	InRange(color.Color) bool
 	EnforceRange(color.Color) color.Color
+	Percentile(f float64) color.Color
 }

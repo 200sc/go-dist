@@ -26,6 +26,11 @@ func (c Constant) InRange(f float64) bool {
 }
 
 // EnforceRange returns the float behind the constant
-func (c Constant) EnforceRange(f float64) float64 {
+func (c Constant) EnforceRange(float64) float64 {
+	return float64(c)
+}
+
+// Percentile returns the float behind the constant
+func (c Constant) Percentile(float64) float64 {
 	return float64(c)
 }

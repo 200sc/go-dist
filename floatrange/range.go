@@ -7,4 +7,5 @@ type Range interface {
 	Mult(f float64) Range
 	InRange(f float64) bool
 	EnforceRange(f float64) float64
+	Percentile(f float64) float64
 }

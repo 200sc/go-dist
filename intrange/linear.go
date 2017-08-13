@@ -56,3 +56,8 @@ func (lir linear) EnforceRange(i int) int {
 	}
 	return i
 }
+
+func (lir linear) Percentile(f float64) int {
+	diff := float64(lir.Max-lir.Min) * f
+	return lir.Min + int(diff)
+}
