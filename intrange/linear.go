@@ -11,7 +11,7 @@ func NewLinear(min, max int) Range {
 	if max < min {
 		max, min = min, max
 	}
-	return linear{min, max}
+	return linear{min, max, nowRand()}
 }
 
 // NewSpread returns a linear range from base - s to base + s
@@ -22,7 +22,7 @@ func NewSpread(base, s int) Range {
 	if s < 0 {
 		s *= -1
 	}
-	return linear{base - s, base + s}
+	return linear{base - s, base + s, nowRand()}
 }
 
 // Linear polls on a linear scale
@@ -31,10 +31,11 @@ func NewSpread(base, s int) Range {
 // be changed to be less than the minimum.
 type linear struct {
 	Min, Max int
+	rng      *rand.Rand
 }
 
 func (lir linear) Poll() int {
-	return rand.Intn((lir.Max+1)-lir.Min) + lir.Min
+	return lir.rng.Intn((lir.Max+1)-lir.Min) + lir.Min
 }
 
 func (lir linear) Mult(i int) Range {

@@ -4,23 +4,24 @@ import "math/rand"
 
 // NewSpread returns a linear range from base-spread to base+spread
 func NewSpread(base, spread float64) Range {
-	return LinearFloatRange{base - spread, base + spread}
+	return LinearFloatRange{base - spread, base + spread, nowRand()}
 }
 
 // NewLinear returns a linear range from min to max
 func NewLinear(min, max float64) Range {
-	return LinearFloatRange{min, max}
+	return LinearFloatRange{min, max, nowRand()}
 }
 
 // LinearFloatRange is a range from min to max
 type LinearFloatRange struct {
 	Max, Min float64
+	rng      *rand.Rand
 }
 
 // Poll on a linear float range returns a float at uniform
 // distribution in lfr's range
 func (lfr LinearFloatRange) Poll() float64 {
-	return ((lfr.Max - lfr.Min) * rand.Float64()) + lfr.Min
+	return ((lfr.Max - lfr.Min) * lfr.rng.Float64()) + lfr.Min
 }
 
 // Mult scales a LinearFloatRange by f
