@@ -8,10 +8,12 @@ func NewLinear(min, max int) Range {
 	if max == min {
 		return Constant(min)
 	}
+	flipped := false
 	if max < min {
 		max, min = min, max
+		flipped = true
 	}
-	return linear{min, max, nowRand()}
+	return linear{min, max, nowRand(), flipped}
 }
 
 // NewSpread returns a linear range from base - s to base + s
@@ -22,7 +24,7 @@ func NewSpread(base, s int) Range {
 	if s < 0 {
 		s *= -1
 	}
-	return linear{base - s, base + s, nowRand()}
+	return linear{base - s, base + s, nowRand(), false}
 }
 
 // Linear polls on a linear scale
@@ -32,6 +34,7 @@ func NewSpread(base, s int) Range {
 type linear struct {
 	Min, Max int
 	rng      *rand.Rand
+	flipped  bool
 }
 
 func (lir linear) Poll() int {
@@ -58,6 +61,9 @@ func (lir linear) EnforceRange(i int) int {
 }
 
 func (lir linear) Percentile(f float64) int {
-	diff := float64(lir.Max-lir.Min) * f
+	diff := float64(lir.Max-lir.Min) * f // 0 - 255 * .1 = -25 + 255 = 230 // 255 - 0 * .1 = 25
+	if lir.flipped {
+		return lir.Max - int(diff)
+	}
 	return lir.Min + int(diff)
 }
