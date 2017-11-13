@@ -15,8 +15,8 @@ func (c Constant) Poll() int {
 }
 
 // Mult returns this range scaled by i
-func (c Constant) Mult(i int) Range {
-	return Constant(int(c) * i)
+func (c Constant) Mult(i float64) Range {
+	return Constant(int(float64(int(c)) * i))
 }
 
 // EnforceRange on a constant must return the constant

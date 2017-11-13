@@ -17,7 +17,7 @@ func (inf Infinite) Poll() int {
 }
 
 // Mult does nothing to Infinites.
-func (inf Infinite) Mult(i int) Range {
+func (inf Infinite) Mult(i float64) Range {
 	return inf
 }
 

@@ -7,7 +7,7 @@ package intrange
 // on the implementing struct.
 type Range interface {
 	Poll() int
-	Mult(int) Range
+	Mult(float64) Range
 	InRange(int) bool
 	EnforceRange(int) int
 	Percentile(float64) int

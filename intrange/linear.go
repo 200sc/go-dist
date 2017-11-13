@@ -41,9 +41,9 @@ func (lir linear) Poll() int {
 	return lir.rng.Intn((lir.Max+1)-lir.Min) + lir.Min
 }
 
-func (lir linear) Mult(i int) Range {
-	lir.Max *= i
-	lir.Min *= i
+func (lir linear) Mult(i float64) Range {
+	lir.Max = int(float64(lir.Max) * i)
+	lir.Min = int(float64(lir.Min) * i)
 	return lir
 }
 
