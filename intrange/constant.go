@@ -1,5 +1,7 @@
 package intrange
 
+import "math/rand"
+
 // NewConstant returns a range which will always return the input constant
 func NewConstant(i int) Range {
 	return Constant(i)
@@ -33,3 +35,6 @@ func (c Constant) InRange(i int) bool {
 func (c Constant) Percentile(float64) int {
 	return int(c)
 }
+
+// SetRand is NOP on Constant
+func (c Constant) SetRand(*rand.Rand) {}

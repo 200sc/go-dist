@@ -1,6 +1,10 @@
 // Package intrange holds distributions that accept and return ints
 package intrange
 
+import (
+	"math/rand"
+)
+
 // Range represents the ability
 // to poll a struct and return an integer,
 // distributed over some range dependant
@@ -11,4 +15,5 @@ type Range interface {
 	InRange(int) bool
 	EnforceRange(int) int
 	Percentile(float64) int
+	SetRand(*rand.Rand)
 }

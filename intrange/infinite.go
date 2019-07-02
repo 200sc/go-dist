@@ -1,6 +1,9 @@
 package intrange
 
-import "math"
+import (
+	"math"
+	"math/rand"
+)
 
 // NewInfinite returns a range which will always return math.MaxInt32 and
 // is unchangable.
@@ -35,3 +38,6 @@ func (inf Infinite) InRange(i int) bool {
 func (inf Infinite) Percentile(float64) int {
 	return math.MaxInt32
 }
+
+// SetRand is NOP on Infinite
+func (inf Infinite) SetRand(*rand.Rand) {}

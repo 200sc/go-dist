@@ -67,3 +67,8 @@ func (lir linear) Percentile(f float64) int {
 	}
 	return lir.Min + int(diff)
 }
+
+// SetRand sets the rng for linear randomness calls
+func (lir linear) SetRand(rng *rand.Rand) {
+	lir.rng = rng
+}
